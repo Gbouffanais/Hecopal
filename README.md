@@ -58,3 +58,6 @@ La conexión PostgreSQL real fue verificada el 2 de octubre de 2026, usando SSL 
 El flujo OAuth con PKCE está implementado. Configuración: [GOOGLE_LOGIN.md](GOOGLE_LOGIN.md). El botón se habilita cuando el proveedor Google está activo en Supabase. Las cuentas nuevas tienen rol cliente.
 
 
+Perfil del cliente: nombre, correo vinculado al acceso, teléfono y empresa opcionales, selección preferida y resumen de reservas propias. Ejecutar database/profile.sql para actualizar instalaciones anteriores. Sólo el servidor actualiza el perfil autenticado; rol y correo no son editables por el formulario.
+
+
