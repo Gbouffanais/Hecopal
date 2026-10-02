@@ -4,9 +4,9 @@
 - Seis pruebas de servidor aprobadas: permisos, precio fijado al reservar, salida/cancelación, conservación de facturas, aislamiento/concurrencia y kilos decimales.
 - Interfaz: reserva de 2,5 kg de primera selección guardada por $8.750 y visible en inventario.
 - Interfaz: empleado sin correcciones de lote ni historial administrativo; administrador con estas herramientas.
-- El filtro por refrigerador y último ingreso se incorporaron a la compilación final.
+- El filtro por refrigerador y último ingreso se incorporaron a la compilación final y se comprobaron en la interfaz.
 - Sin proyecto Supabase visible en la conexión actual: esquema e integración preparados, no aplicados ni verificados contra una base real.
-- GitHub: el repositorio Gbouffanais/Hecopal devuelve 404 en el conector; Git solicita autenticación. Subida pendiente.
+- GitHub: los 18 archivos del boceto fueron publicados en main el 2 de octubre de 2026 y verificados en el árbol del repositorio.
 - Excel histórico no importado; copias de seguridad pendientes de configurar y probar.
 - La demostración guarda sólo datos de ejemplo localmente. No es un despliegue de producción.
 
