@@ -28,3 +28,6 @@ Sólo usar H: si no está ocupada. En un entorno habitual, ejecutar npm run buil
 - Google: interfaz compilada y comprobada; proveedor desactivado en Supabase. Prueba real de inicio de sesión pendiente de Client ID, Client Secret y URLs autorizadas.
 
 
+Perfil: 8 pruebas aprobadas en total y compilación Angular correcta. Se comprobó persistencia al iniciar otra sesión, validación de contacto, aislamiento entre perfiles y rechazo de cambios de rol/identidad. Migración customer_profile aplicada a Supabase.
+
+
