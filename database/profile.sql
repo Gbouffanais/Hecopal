@@ -1,0 +1,2 @@
+alter table hecopal.accounts add column if not exists email text not null default '', add column if not exists phone text not null default '', add column if not exists company text not null default '', add column if not exists preferred_grade text not null default '' check(preferred_grade in ('','Primera','Segunda','Tercera')), add column if not exists created_at timestamptz not null default now();
+
