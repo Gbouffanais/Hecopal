@@ -54,3 +54,7 @@ La conexión PostgreSQL real fue verificada el 2 de octubre de 2026, usando SSL 
 
 
 
+## Acceso con Google
+El flujo OAuth con PKCE está implementado. Configuración: [GOOGLE_LOGIN.md](GOOGLE_LOGIN.md). El botón se habilita cuando el proveedor Google está activo en Supabase. Las cuentas nuevas tienen rol cliente.
+
+
