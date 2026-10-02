@@ -1,7 +1,7 @@
 # Verificación del boceto Hecopal
 
 - Angular compiló correctamente con Angular 21.2.24 / Node 24.
-- Seis pruebas de servidor aprobadas: permisos, precio fijado al reservar, salida/cancelación, conservación de facturas, aislamiento/concurrencia y kilos decimales.
+- Siete pruebas aprobadas (incluida comprobación de URL OAuth Google con PKCE): permisos, precio fijado al reservar, salida/cancelación, conservación de facturas, aislamiento/concurrencia y kilos decimales.
 - Interfaz: reserva de 2,5 kg de primera selección guardada por $8.750 y visible en inventario.
 - Interfaz: empleado sin correcciones de lote ni historial administrativo; administrador con estas herramientas.
 - El filtro por refrigerador y último ingreso se incorporaron a la compilación final y se comprobaron en la interfaz.
@@ -23,5 +23,8 @@ npm.cmd run build
 Sólo usar H: si no está ocupada. En un entorno habitual, ejecutar npm run build directamente. La asignación de este entorno fue temporal al proceso; no es necesaria para ejecutar la aplicación ya compilada.
 
 
+
+
+- Google: interfaz compilada y comprobada; proveedor desactivado en Supabase. Prueba real de inicio de sesión pendiente de Client ID, Client Secret y URLs autorizadas.
 
 
