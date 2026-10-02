@@ -10,7 +10,7 @@ export function createApp({store=new DemoStore(join(root,'data/demo.json')),demo
  const app=express(),sessions=new Map(),auth=demo?null:createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
  app.disable('x-powered-by');app.use(express.json({limit:'8mb'}));
  app.use((req,res,next)=>{res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Cache-Control','no-store');if(req.method!=='GET'&&req.headers.origin){try{const origin=new URL(req.headers.origin);if(origin.host!==req.headers.host&&!['localhost','127.0.0.1'].includes(origin.hostname))throw Error()}catch{return res.status(403).json({error:'Origen no permitido.'})}}next()});
- app.get('/api/config',(req,res)=>res.json({demo,supabaseUrl:url,supabaseKey:key}));
+ app.get('/api/config',async(req,res)=>{let googleEnabled=false;if(!demo){try{const response=await fetch(url+'/auth/v1/settings',{headers:{apikey:key},signal:AbortSignal.timeout(5000)});if(response.ok){const settings=await response.json();googleEnabled=settings.external?.google===true}}catch{}}res.json({demo,supabaseUrl:url,supabaseKey:key,googleEnabled})});
  app.post('/api/demo-session',(req,res)=>{if(!demo)throw new Fault('Demo desactivada.',404);const role=req.body.role;if(!['user','employee','admin'].includes(role))throw new Fault('Perfil inválido.');const token=randomUUID();sessions.set(token,{id:'demo-'+role,name:{user:'Cliente de ejemplo',employee:'Empleado de ejemplo',admin:'Administrador de ejemplo'}[role],role});res.json({token})});
  app.use('/api',async(req,res,next)=>{try{const token=req.headers.authorization?.replace(/^Bearer /,'');if(token){if(demo)req.user=sessions.get(token);else{const {data,error}=await auth.auth.getUser(token);if(error||!data.user)throw new Fault('Sesión inválida.',401);req.user=await store.account(data.user)}if(!req.user)throw new Fault('Sesión inválida.',401)}next()}catch(e){next(e)}});
  app.get('/api/catalog',async(req,res)=>res.json(catalog(await store.read())));
@@ -28,3 +28,6 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  const configured=[process.env.SUPABASE_URL,process.env.SUPABASE_PUBLISHABLE_KEY,process.env.DATABASE_URL].filter(Boolean).length;if(configured!==0&&configured!==3)throw Error('Configura las tres variables de Supabase o deja todas vacías.');const demo=configured===0;if(demo&&process.env.NODE_ENV==='production')throw Error('Demo no permitida en producción.');
  createApp({demo,store:demo?new DemoStore(join(root,'data/demo.json')):new SupabaseStore(process.env.DATABASE_URL),url:process.env.SUPABASE_URL||'',key:process.env.SUPABASE_PUBLISHABLE_KEY||''}).listen(Number(process.env.PORT||3000),demo?'127.0.0.1':'0.0.0.0',()=>console.log('Hecopal http://localhost:'+(process.env.PORT||3000)+(demo?' — demo local':' — Supabase')));
 }
+
+
+
