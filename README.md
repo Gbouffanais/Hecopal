@@ -30,7 +30,7 @@ Para desarrollo: mantener `npm start` en una terminal y `npm run dev` en otra. A
 1. Elegir un proyecto nuevo o destinado a Hecopal. Ejecutar database/schema.sql en su editor SQL.
 2. Activar acceso por correo/contraseña y configurar URL de aplicación y confirmación de correo en Supabase Auth.
 3. Copiar .env.example a .env. Completar SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY y DATABASE_URL (conexión PostgreSQL del pooler de Supabase).
-4. DATABASE_URL es un secreto del servidor. No publicarlo en Angular, GitHub, capturas o mensajes.
+4. Configurar DATABASE_SSL_CA=database/supabase-ca.crt para verificar SSL con el certificado público de Supabase. DATABASE_URL es un secreto del servidor. No publicarlo en Angular, GitHub, capturas o mensajes.
 5. Iniciar servidor, crear una cuenta e ingresar una vez para que se cree su perfil.
 6. Asignar rol admin o employee con las instrucciones SQL al final de database/schema.sql. Las cuentas nuevas siempre son user.
 7. El administrador crea productos e ingresa lotes: el proyecto real comienza vacío, sin datos ficticios.
@@ -50,5 +50,7 @@ Las copias de seguridad y su restauración deben configurarse y verificarse seg�
 `npm test` comprueba permisos, conservación del precio reservado, stock, concurrencia, aislamiento del cliente y conservación de facturas.
 `npm run build` compila Angular.
 
-La conexión real a Supabase y la subida a GitHub dependen de habilitar las cuentas. No afirmar que se han desplegado sin verificarlo.
+La conexión PostgreSQL real fue verificada el 2 de octubre de 2026, usando SSL con comprobación de certificado y hostname. El servidor local opera en modo Supabase. Falta registrar las cuentas de las personas y cargar el catálogo real; no hay un despliegue web público.
+
+
 
